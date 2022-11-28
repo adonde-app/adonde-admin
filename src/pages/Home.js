@@ -15,6 +15,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ListItems from "../component/ListItems";
 import Users from "./Users";
 import Advert from "./Advert";
+
 // import { Link, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -78,7 +79,7 @@ const mdTheme = createTheme({
 });
 
 function SwitchNavigation(navName) {
-  console.log("switchnav", navName.children);
+  //   console.log("switchnav", navName.children);
 
   switch (navName.children) {
     case "Reports":

@@ -5,8 +5,12 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import UserInfo from "../component/UserInfo";
+
 const Users = () => {
   const [users, setUsers] = useState(null);
+  const [isClick, setIsClick] = useState(false);
+  const [userId, SetUserId] = useState(null);
 
   // getUsers();
   useEffect(() => {
@@ -16,7 +20,7 @@ const Users = () => {
           "https://adonde-kr.herokuapp.com/user/findAll"
         );
 
-        console.log("res", res.data);
+        console.log("getUsers", res.data);
         setUsers(res.data);
         // console.log("state user", users);
       } catch (e) {
@@ -27,6 +31,17 @@ const Users = () => {
     getUsers();
   }, []);
 
+  if (isClick) {
+    // getUsersById();
+    return (
+      <UserInfo
+        onClick={() => {
+          setIsClick(false);
+        }}
+        value={userId}
+      ></UserInfo>
+    );
+  }
   return (
     <div>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -57,7 +72,13 @@ const Users = () => {
                 <div>로딩중</div>
               ) : (
                 users.map((user) => (
-                  <li key={user.id}>
+                  <li
+                    onClick={() => {
+                      setIsClick(true);
+                      SetUserId(user.id);
+                    }}
+                    key={user.id}
+                  >
                     {user.email} ({user.nickname}) {user.createdAt}
                   </li>
                 ))
