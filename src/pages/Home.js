@@ -131,7 +131,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              어디든
+              adonde admin
             </Typography>
           </Toolbar>
         </AppBar>
