@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { PureComponent } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   LineChart,
@@ -182,7 +182,46 @@ export default function Chart(props) {
   //       //   year.push(user.createdAt.split("T")[0].split("-")[0]);
   //     });
   //   });
+  class CustomizedLabel extends PureComponent {
+    render() {
+      const { x, y, stroke, value } = this.props;
 
+      return (
+        <text
+          x={x}
+          y={y}
+          dy={-8}
+          dx={5}
+          fill={stroke}
+          fontSize={15}
+          textAnchor="middle"
+        >
+          {value}
+        </text>
+      );
+    }
+  }
+
+  class CustomizedAxisTick extends PureComponent {
+    render() {
+      const { x, y, stroke, payload } = this.props;
+
+      return (
+        <g transform={`translate(${x},${y})`}>
+          <text
+            x={0}
+            y={0}
+            dy={16}
+            textAnchor="end"
+            fill="#666"
+            transform="rotate(-35)"
+          >
+            {payload.value}
+          </text>
+        </g>
+      );
+    }
+  }
   return (
     <React.Fragment>
       <ResponsiveContainer>
@@ -198,7 +237,7 @@ export default function Chart(props) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="name" tick={<CustomizedAxisTick />} />
           <YAxis />
           <Tooltip />
           <Legend />
@@ -206,7 +245,8 @@ export default function Chart(props) {
             type="monotone"
             dataKey={props.value}
             stroke="#8884d8"
-            // activeDot={{ r: 8 }}
+            activeDot={{ r: 8 }}
+            label={<CustomizedLabel />}
           />
         </LineChart>
       </ResponsiveContainer>

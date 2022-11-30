@@ -25,7 +25,7 @@ const CreateUser = (props) => {
 
   const postUserCreate = async () => {
     console.log("inputs", inputs);
-    if (email == "" || nickname == "") {
+    if (email === "" || nickname === "") {
       alert("이메일과 닉네임을 입력해주세요");
     } else {
       try {
@@ -49,6 +49,7 @@ const CreateUser = (props) => {
       }
     }
   };
+
   return (
     <div>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
