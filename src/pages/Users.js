@@ -4,13 +4,22 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import UserInfo from "../component/UserInfo";
+import CreateUser from "../component/CreateUser";
+import Chart from "../component/Chart";
 
 const Users = () => {
   const [users, setUsers] = useState(null);
-  const [isClick, setIsClick] = useState(false);
+  const [isUserClick, setIsUserClick] = useState(false);
+  const [isCreateUserClick, setIsCreateUserClick] = useState(false);
   const [userId, SetUserId] = useState(null);
+  const [year, setYear] = useState("2022");
 
   // getUsers();
   useEffect(() => {
@@ -29,17 +38,25 @@ const Users = () => {
       }
     };
     getUsers();
-  }, []);
+  }, [isCreateUserClick]);
 
-  if (isClick) {
+  if (isUserClick) {
     // getUsersById();
     return (
       <UserInfo
         onClick={() => {
-          setIsClick(false);
+          setIsUserClick(false);
         }}
         value={userId}
       ></UserInfo>
+    );
+  } else if (isCreateUserClick) {
+    return (
+      <CreateUser
+        onClick={() => {
+          setIsCreateUserClick(false);
+        }}
+      ></CreateUser>
     );
   }
   return (
@@ -54,10 +71,38 @@ const Users = () => {
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
-                height: 240,
+                height: 300,
               }}
             >
-              월별 user 추이
+              <Grid container>
+                <div
+                  style={{
+                    color: "white",
+                    backgroundColor: "grey",
+                    width: 40,
+                    borderRadius: 10,
+                  }}
+                  onClick={() => {
+                    setYear("2021");
+                  }}
+                >
+                  2021
+                </div>
+                <div
+                  style={{
+                    color: "white",
+                    backgroundColor: "grey",
+                    width: 40,
+                    borderRadius: 10,
+                  }}
+                  onClick={() => {
+                    setYear("2022");
+                  }}
+                >
+                  2022
+                </div>
+              </Grid>
+              <Chart value={year} />
             </Paper>
           </Grid>
           <Grid item xs={12}>
@@ -68,21 +113,73 @@ const Users = () => {
                 flexDirection: "column",
               }}
             >
+              <h1>userlist</h1>
               {users == null ? (
                 <div>로딩중</div>
               ) : (
-                users.map((user) => (
-                  <li
-                    onClick={() => {
-                      setIsClick(true);
-                      SetUserId(user.id);
-                    }}
-                    key={user.id}
+                <TableContainer component={Paper}>
+                  <Table
+                    sx={{ minWidth: 650 }}
+                    size="small"
+                    aria-label="a dense table"
                   >
-                    {user.email} ({user.nickname}) {user.createdAt}
-                  </li>
-                ))
+                    <TableHead sx={{ backgroundColor: "black" }}>
+                      <TableRow>
+                        <TableCell sx={{ color: "white" }}>id</TableCell>
+                        <TableCell sx={{ color: "white" }} align="right">
+                          nickname
+                        </TableCell>
+                        <TableCell sx={{ color: "white" }} align="right">
+                          createdAt
+                        </TableCell>
+                        <TableCell sx={{ color: "white" }} align="right">
+                          email
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {users.map((user) => (
+                        <TableRow
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                          onClick={() => {
+                            setIsUserClick(true);
+                            SetUserId(user.id);
+                          }}
+                          key={user.id}
+                        >
+                          <TableCell component="th" scope="row">
+                            {user.id}
+                          </TableCell>
+                          <TableCell align="right">{user.nickname}</TableCell>
+                          <TableCell align="right">
+                            {user.createdAt.split("T")[0]}
+                          </TableCell>
+                          <TableCell align="right">{user.email} </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               )}
+            </Paper>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            onClick={() => {
+              setIsCreateUserClick(true);
+            }}
+          >
+            <Paper
+              sx={{
+                p: 2,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              + 사용자 등록하기
             </Paper>
           </Grid>
         </Grid>

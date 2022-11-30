@@ -7,6 +7,27 @@ import { useEffect, useState } from "react";
 
 const UserInfo = (props) => {
   const [userInfo, setUserInfo] = useState(null);
+  const deleteUserById = async () => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      console.log(userInfo.id);
+      try {
+        const res = await axios.delete(
+          "https://adonde-kr.herokuapp.com/user/deleteById",
+          {
+            id: userInfo.id,
+          }
+        );
+
+        console.log("deleteUserById", res);
+        alert("삭제되었습니다");
+      } catch (e) {
+        // 실패 시 처리
+        console.error(e);
+      }
+    } else {
+    }
+  };
+
   useEffect(() => {
     const getUsersById = async () => {
       try {
@@ -39,6 +60,7 @@ const UserInfo = (props) => {
           user info
           {userInfo != null ? (
             <div>
+              <img src={`${userInfo.profile_image}`} width="300"></img>
               <p>id : {userInfo.id}</p>
               <p>nickname : {userInfo.nickname}</p>
               <p>email : {userInfo.email}</p>
@@ -48,10 +70,8 @@ const UserInfo = (props) => {
           ) : (
             <div>로딩중</div>
           )}
-          <Button variant="contained" onClick={props.onClick}>
-            수정
-          </Button>
-          <Button variant="contained" onClick={props.onClick}>
+          <Button variant="contained">수정</Button>
+          <Button variant="contained" onClick={() => deleteUserById()}>
             삭제
           </Button>
           <Button variant="contained" onClick={props.onClick}>
