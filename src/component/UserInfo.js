@@ -66,6 +66,12 @@ const UserInfo = (props) => {
               <p>email : {userInfo.email}</p>
               <p>createdAt : {userInfo.createdAt}</p>
               <p>updatedAt : {userInfo.updatedAt}</p>
+              <p>
+                storedCities :{" "}
+                {userInfo["storedCities"].map((city) => (
+                  <li key={city}>{city}</li>
+                ))}
+              </p>
             </div>
           ) : (
             <div>로딩중</div>

@@ -82,6 +82,7 @@ const CreateUser = (props) => {
                 id="profile_image"
                 label="profile_img"
                 variant="standard"
+                onChange={onChange}
               />
               <Button variant="contained" onClick={postUserCreate}>
                 등록하기

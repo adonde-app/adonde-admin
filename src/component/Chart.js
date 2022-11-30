@@ -113,7 +113,7 @@ export default function Chart(props) {
   const [users, setUsers] = useState([]);
   const [date, setDate] = useState({});
   const [year, setYear] = useState("");
-  const [month, setMonth] = useState([]);
+  const [yearMonth, setYearMonth] = useState([]);
   const theme = useTheme();
   //   const dateList = useMemo(() => countUser(users), [date]);
   useEffect(() => {
@@ -123,21 +123,23 @@ export default function Chart(props) {
           "https://adonde-kr.herokuapp.com/user/findAll"
         );
         setUsers(users.concat(res.data));
-        setMonth([]);
+        setYearMonth([]);
         res.data.map((user) => {
           //   console.log(user.createdAt.split("T")[0].split("-")[0]);
-
           //   console.log(user.createdAt.split("T")[0].split("-")[1]);
-          month.push(
+          //2022-11 이런식으로 yearMonth에 저장
+          yearMonth.push(
             `${user.createdAt.split("T")[0].split("-")[0]}-${
               user.createdAt.split("T")[0].split("-")[1]
             }`
           );
         });
-        // console.log("month", month);
-        var searchtext = month.filter(function (str) {
+        // console.log("yearMonth", yearMonth);
+        // 클릭한 년도 값을 가지고 있는 값만 필터링..
+        var searchtext = yearMonth.filter(function (str) {
           return !str.indexOf(props.value);
         });
+        // 오름차순 sort
         searchtext.sort();
         // console.log("searchtext", searchtext);
         const result = {};
@@ -161,6 +163,7 @@ export default function Chart(props) {
     };
     getUsers();
     // countUser(users);
+    //props값이 바뀔 때 마다... 실행해줌
   }, [props]);
   //   const countDate = useCallback(() => {
   //     res.data.map((user) => {
