@@ -60,7 +60,11 @@ const UserInfo = (props) => {
           user info
           {userInfo != null ? (
             <div>
-              <img src={`${userInfo.profile_image}`} width="300"></img>
+              <img
+                src={`${userInfo.profile_image}`}
+                width="300"
+                alt="profile"
+              ></img>
               <p>id : {userInfo.id}</p>
               <p>nickname : {userInfo.nickname}</p>
               <p>email : {userInfo.email}</p>
