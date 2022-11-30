@@ -25,24 +25,28 @@ const CreateUser = (props) => {
 
   const postUserCreate = async () => {
     console.log("inputs", inputs);
-    try {
-      const res = await axios.post(
-        "https://adonde-kr.herokuapp.com/user/create",
-        {
-          email: email,
-          nickname: nickname,
-          dateofbirth: dateofbirth,
-          profile_image: profile_image,
-        }
-      );
+    if (email == "" || nickname == "") {
+      alert("이메일과 닉네임을 입력해주세요");
+    } else {
+      try {
+        const res = await axios.post(
+          "https://adonde-kr.herokuapp.com/user/create",
+          {
+            email: email,
+            nickname: nickname,
+            dateofbirth: dateofbirth,
+            profile_image: profile_image,
+          }
+        );
 
-      console.log("createUser", res.data);
-      alert("create user!");
-      props.onClick();
-    } catch (e) {
-      // 실패 시 처리
-      console.error(e);
-      alert("다시 시도해주세요");
+        console.log("createUser", res.data);
+        alert("create user!");
+        props.onClick();
+      } catch (e) {
+        // 실패 시 처리
+        console.error(e);
+        alert("다시 시도해주세요");
+      }
     }
   };
   return (
