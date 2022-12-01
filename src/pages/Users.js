@@ -21,7 +21,6 @@ const Users = () => {
   const [userId, SetUserId] = useState(null);
   const [year, setYear] = useState("2022");
 
-  // getUsers();
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -62,7 +61,7 @@ const Users = () => {
   return (
     <div>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <h1>users</h1>
+        <h1>Users</h1>
 
         <Grid container spacing={3}>
           <Grid item xs={12}>

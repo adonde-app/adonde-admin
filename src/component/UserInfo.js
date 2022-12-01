@@ -177,16 +177,6 @@ const UserInfo = (props) => {
               </Button>
             </div>
           )}
-          {/* {setIsModify ? (<Button>수정완료 </Button>) : (
-            
-            
-            <Button variant="contained" onClick={() => setIsModify(!isModify)}>
-            수정
-          </Button>
-          <Button variant="contained" onClick={() => deleteUserById()}>
-            삭제
-          </Button>
-         */}
         </Paper>
         <Button
           variant="contained"
