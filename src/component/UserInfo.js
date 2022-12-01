@@ -19,7 +19,7 @@ const UserInfo = (props) => {
   });
   const [selectedOption, setSelectedOption] = useState(null);
   const [storedCities, setStoredCities] = useState(null);
-  //   const [deleteCities, setDeleteCities] = useState([]);
+  const [deleteCities, setDeleteCities] = useState([]);
 
   const deleteUserById = async () => {
     if (window.confirm("삭제하시겠습니까?")) {
@@ -130,30 +130,44 @@ const UserInfo = (props) => {
     //선택한 도시들 user의 storedCities에 push
     selectedOption.map((city) => {
       console.log("city", city.value);
+      setDeleteCities([]);
       //특별시일 경우 *2 해서 다시 저장
       var pattern = /\s/g;
       if (city.value.match(pattern)) {
+        deleteCities.push(city.value);
         //특별시가 아님
-        const filtered1 = storedCities.filter(
-          (element) => element !== city.value
-        );
-        console.log("특별시 아닌거 삭제", filtered1);
-        setStoredCities(filtered1);
+        // const filtered1 = storedCities.filter(
+        //   (element) => element !== city.value
+        // );
+        // console.log("특별시 아닌거 삭제", filtered1);
+        // console.log("확인", storedCities);
+        // setStoredCities(filtered1);
       } else {
         //특별시
         const tempCity = city.value + " " + city.value;
-
-        console.log("특별시임", tempCity);
-        console.log("확인", storedCities);
-        const filtered2 = storedCities.filter(
-          (element) => element !== tempCity
-        );
-        console.log("특별시 인거 삭제", filtered2);
-        setStoredCities(filtered2);
+        deleteCities.push(tempCity);
+        // console.log("특별시임", tempCity);
+        // console.log("확인", storedCities);
+        // const filtered2 = storedCities.filter(
+        //   (element) => element !== tempCity
+        // );
+        // console.log("특별시 인거 삭제", filtered2);
+        // setStoredCities(filtered2);
       }
-      return storedCities;
+
+      return 0;
     });
 
+    console.log("delete", deleteCities);
+    //deleteCities에 있는 값들 삭제하기
+    for (let i = 0; i < deleteCities.length; i++) {
+      for (let j = 0; j < storedCities.length; j++) {
+        if (storedCities[j] === deleteCities[i]) {
+          storedCities.splice(j, 1);
+          j--;
+        }
+      }
+    }
     console.log("delete", storedCities);
   };
   return (
