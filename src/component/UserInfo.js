@@ -19,6 +19,7 @@ const UserInfo = (props) => {
   });
   const [selectedOption, setSelectedOption] = useState(null);
   const [storedCities, setStoredCities] = useState(null);
+  //   const [deleteCities, setDeleteCities] = useState([]);
 
   const deleteUserById = async () => {
     if (window.confirm("삭제하시겠습니까?")) {
@@ -125,6 +126,36 @@ const UserInfo = (props) => {
     console.log("uniqueArr", uniqueArr);
     setStoredCities(uniqueArr);
   };
+  const deleteStoredCities = () => {
+    //선택한 도시들 user의 storedCities에 push
+    selectedOption.map((city) => {
+      console.log("city", city.value);
+      //특별시일 경우 *2 해서 다시 저장
+      var pattern = /\s/g;
+      if (city.value.match(pattern)) {
+        //특별시가 아님
+        const filtered1 = storedCities.filter(
+          (element) => element !== city.value
+        );
+        console.log("특별시 아닌거 삭제", filtered1);
+        setStoredCities(filtered1);
+      } else {
+        //특별시
+        const tempCity = city.value + " " + city.value;
+
+        console.log("특별시임", tempCity);
+        console.log("확인", storedCities);
+        const filtered2 = storedCities.filter(
+          (element) => element !== tempCity
+        );
+        console.log("특별시 인거 삭제", filtered2);
+        setStoredCities(filtered2);
+      }
+      return storedCities;
+    });
+
+    console.log("delete", storedCities);
+  };
   return (
     <div>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -202,6 +233,13 @@ const UserInfo = (props) => {
                     onClick={checkSelecItems}
                   >
                     도시 추가
+                  </Button>
+                  <Button
+                    disabled={!isModify}
+                    variant="contained"
+                    onClick={deleteStoredCities}
+                  >
+                    도시 삭제
                   </Button>
                 </div>
               </div>
