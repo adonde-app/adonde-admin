@@ -3,8 +3,11 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Select from "react-select";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import StickyFooter from "./StickyFooter";
+import { SidoSggData } from "../locales/ko";
 
 const UserInfo = (props) => {
   const [userInfo, setUserInfo] = useState(null);
@@ -14,6 +17,9 @@ const UserInfo = (props) => {
     nickname: "",
     dateofbirth: "",
   });
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [storedCities, setStoredCities] = useState(null);
+
   const deleteUserById = async () => {
     if (window.confirm("삭제하시겠습니까?")) {
       console.log(userInfo.id);
@@ -47,7 +53,7 @@ const UserInfo = (props) => {
           password: userInfo.password,
           nickname: inputs.nickname,
           dateofbirth: inputs.dateofbirth,
-          storedCities: userInfo.storedCities,
+          storedCities: storedCities,
         }
       );
 
@@ -77,6 +83,7 @@ const UserInfo = (props) => {
           nickname: res.data.nickname,
           dateofbirth: res.data.dateofbirth,
         });
+        setStoredCities(res.data.storedCities);
       } catch (e) {
         // 실패 시 처리
         console.error(e);
@@ -92,103 +99,152 @@ const UserInfo = (props) => {
       [id]: value, // id 를 가진 값을 value 로 설정
     });
   };
-  return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Grid item xs={12}>
-        <Paper
-          sx={{
-            p: 2,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          user info
-          {userInfo != null ? (
-            <div>
-              <img
-                src={`${userInfo.profile_image}`}
-                width="300"
-                alt="profile"
-              ></img>
+  const checkSelecItems = () => {
+    console.log("checkSelecItems", selectedOption);
 
+    //선택한 도시들 user의 storedCities에 push
+    selectedOption.map((city) => {
+      console.log("city", city.value);
+      //특별시일 경우 *2 해서 다시 저장
+      var pattern = /\s/g;
+      if (city.value.match(pattern)) {
+        //특별시가 아님
+        storedCities.push(city.value);
+      } else {
+        //특별시
+        const tempCity = city.value + " " + city.value;
+        storedCities.push(tempCity);
+      }
+      return storedCities;
+    });
+
+    //중복값 제거
+    const uniqueArr = storedCities.filter((element, index) => {
+      return storedCities.indexOf(element) === index;
+    });
+    console.log("uniqueArr", uniqueArr);
+    setStoredCities(uniqueArr);
+  };
+  return (
+    <div>
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <Grid item xs={12}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            user info
+            {userInfo != null ? (
               <div>
-                <p>id : {userInfo.id}</p>
-                nickname :{" "}
-                <TextField
-                  disabled={!isModify}
-                  id="nickname"
-                  value={inputs.nickname}
-                  variant="standard"
-                  onChange={onChange}
-                ></TextField>
+                <img
+                  src={`${userInfo.profile_image}`}
+                  width="300"
+                  alt="profile"
+                ></img>
+                <div>
+                  <p>id : {userInfo.id}</p>
+                  nickname :{" "}
+                  <TextField
+                    disabled={!isModify}
+                    id="nickname"
+                    value={inputs.nickname}
+                    variant="standard"
+                    onChange={onChange}
+                  ></TextField>
+                </div>
+                <div>
+                  email :
+                  <TextField
+                    disabled={!isModify}
+                    id="email"
+                    value={inputs.email}
+                    variant="standard"
+                    onChange={onChange}
+                  ></TextField>
+                </div>
+                <div>
+                  dateofbirth :
+                  <TextField
+                    disabled={!isModify}
+                    id="dateofbirth"
+                    value={inputs.dateofbirth}
+                    variant="standard"
+                    onChange={onChange}
+                  ></TextField>
+                  <p>createdAt : {userInfo.createdAt}</p>
+                  <p>updatedAt : {userInfo.updatedAt}</p>
+                  <p>storedCities : </p>
+                  {storedCities != null ? (
+                    <div>
+                      {storedCities.map((city) => (
+                        <li key={city}>{city}</li>
+                      ))}
+                    </div>
+                  ) : (
+                    <div>...</div>
+                  )}
+                  <Select
+                    isDisabled={!isModify}
+                    isMulti
+                    options={SidoSggData}
+                    defaultValue={selectedOption}
+                    onChange={(newValues) => {
+                      setSelectedOption(newValues);
+                      console.log(selectedOption);
+                    }}
+                  />
+                  <Button
+                    disabled={!isModify}
+                    variant="contained"
+                    onClick={checkSelecItems}
+                  >
+                    도시 추가
+                  </Button>
+                </div>
               </div>
-              <div>
-                email :
-                <TextField
-                  disabled={!isModify}
-                  id="email"
-                  value={inputs.email}
-                  variant="standard"
-                  onChange={onChange}
-                ></TextField>
-              </div>
-              <div>
-                dateofbirth :
-                <TextField
-                  disabled={!isModify}
-                  id="dateofbirth"
-                  value={inputs.dateofbirth}
-                  variant="standard"
-                  onChange={onChange}
-                ></TextField>
-                <p>createdAt : {userInfo.createdAt}</p>
-                <p>updatedAt : {userInfo.updatedAt}</p>
-                <p>
-                  storedCities :{" "}
-                  {userInfo["storedCities"].map((city) => (
-                    <li key={city}>{city}</li>
-                  ))}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div>로딩중</div>
-          )}
-          {isModify ? (
-            <Button
-              variant="contained"
-              onClick={() => {
-                setIsModify(!isModify);
-                updateUser();
-              }}
-            >
-              수정완료
-            </Button>
-          ) : (
-            <div>
+            ) : (
+              <div>로딩중</div>
+            )}
+            {isModify ? (
               <Button
                 variant="contained"
-                onClick={() => setIsModify(!isModify)}
+                onClick={() => {
+                  setIsModify(!isModify);
+                  updateUser();
+                }}
               >
-                수정
+                수정완료
               </Button>
-              <Button variant="contained" onClick={() => deleteUserById()}>
-                삭제
-              </Button>
-            </div>
-          )}
-        </Paper>
-        <Button
-          variant="contained"
-          onClick={() => {
-            props.onClick();
-            window.location.reload();
-          }}
-        >
-          닫기
-        </Button>
-      </Grid>
-    </Container>
+            ) : (
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={() => setIsModify(!isModify)}
+                >
+                  수정
+                </Button>
+                <Button variant="contained" onClick={() => deleteUserById()}>
+                  삭제
+                </Button>
+              </div>
+            )}
+          </Paper>
+          <Button
+            variant="contained"
+            onClick={() => {
+              props.onClick();
+              window.location.reload();
+            }}
+          >
+            닫기
+          </Button>
+        </Grid>
+      </Container>
+      <StickyFooter />
+    </div>
   );
 };
 
