@@ -8,7 +8,10 @@ const Advert = () => {
     <div>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <h1>Advert</h1>
-        <FirebaseTest></FirebaseTest>
+        <div>
+          <FirebaseTest></FirebaseTest>
+        </div>
+        <br />
 
         <Grid container spacing={3}>
           <Grid item xs={12}>
