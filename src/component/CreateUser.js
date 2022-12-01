@@ -6,14 +6,15 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { useState } from "react";
+import ImgUpload from "./ImgUpload";
 const CreateUser = (props) => {
   const [inputs, setInputs] = useState({
     email: "",
     nickname: "",
     dateofbirth: "",
-    profile_image: "",
   });
-  const { email, nickname, dateofbirth, profile_image } = inputs;
+  const [profileImg, setProfileImg] = useState("");
+  const { email, nickname, dateofbirth } = inputs;
   const onChange = (e) => {
     const { value, id } = e.target; // 우선 e.target 에서 name 과 value 를 추출
     // console.log(inputs);
@@ -24,7 +25,7 @@ const CreateUser = (props) => {
   };
 
   const postUserCreate = async () => {
-    console.log("inputs", inputs);
+    console.log("inputs", inputs, profileImg);
     if (email === "" || nickname === "") {
       alert("이메일과 닉네임을 입력해주세요");
     } else {
@@ -35,7 +36,7 @@ const CreateUser = (props) => {
             email: email,
             nickname: nickname,
             dateofbirth: dateofbirth,
-            profile_image: profile_image,
+            profile_image: profileImg,
           }
         );
 
@@ -48,6 +49,9 @@ const CreateUser = (props) => {
         alert("다시 시도해주세요");
       }
     }
+  };
+  const laodProfileImgUrl = (url) => {
+    setProfileImg(url);
   };
 
   return (
@@ -83,11 +87,14 @@ const CreateUser = (props) => {
                 variant="standard"
                 onChange={onChange}
               />
+
+              <ImgUpload laodProfileImgUrl={laodProfileImgUrl} />
               <TextField
+                disabled={true}
                 id="profile_image"
                 label="profile_img"
                 variant="standard"
-                onChange={onChange}
+                value={profileImg}
               />
               <Button variant="contained" onClick={postUserCreate}>
                 등록하기
