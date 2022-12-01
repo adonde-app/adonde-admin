@@ -14,12 +14,15 @@ const UserInfo = (props) => {
         const res = await axios.delete(
           "https://adonde-kr.herokuapp.com/user/deleteById",
           {
-            id: userInfo.id,
+            data: {
+              id: userInfo.id,
+            },
           }
         );
 
         console.log("deleteUserById", res);
         alert("삭제되었습니다");
+        props.onClick();
       } catch (e) {
         // 실패 시 처리
         console.error(e);
