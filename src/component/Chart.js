@@ -196,7 +196,7 @@ export default function Chart(props) {
             dy={16}
             textAnchor="end"
             fill="#666"
-            transform="rotate(-35)"
+            // transform="rotate(-10)"
           >
             {payload.value}
           </text>
