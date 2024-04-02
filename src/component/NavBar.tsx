@@ -1,10 +1,11 @@
+import { colors } from '@/styles/colorPalette'
 import { css } from '@emotion/react'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
 const navBarStyles = css`
-  background-color: #44ad5e;
+  background-color: ${colors.adondeGreen};
 `
 
 function NavBar() {
