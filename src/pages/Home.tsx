@@ -1,18 +1,16 @@
 import { css } from '@emotion/react'
-import styled from '@emotion/styled'
+import Text from '@/component/shared/Text'
 
 const contanerStyles = css`
   background-color: pink;
 `
 
-const Button = styled.button`
-  width: 100px;
-  height: 100px;
-`
 function Home() {
   return (
     <div css={contanerStyles}>
-      home<Button>버튼</Button>
+      <Text typography="t1" display="block">
+        home page{' '}
+      </Text>
     </div>
   )
 }
