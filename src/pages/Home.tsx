@@ -6,10 +6,9 @@ const contanerStyles = css`
 `
 
 const Button = styled.button`
-  width: 300px;
-  heigth: 100px;
+  width: 100px;
+  height: 100px;
 `
-
 function Home() {
   return (
     <div css={contanerStyles}>
