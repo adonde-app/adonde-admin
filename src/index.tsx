@@ -5,10 +5,13 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
+import { Global } from '@emotion/react'
+import globalStyles from './styles/globalStyles'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <BrowserRouter>
+    <Global styles={globalStyles}></Global>
     <App />
   </BrowserRouter>,
 )
