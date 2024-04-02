@@ -1,16 +1,18 @@
 import { css } from '@emotion/react'
-import Text from '@/component/shared/Text'
+import Text from '@/components/shared/Text'
+import Top from '@/components/shared/Top'
+import UserList from '@/components/home/UserList'
 
 const contanerStyles = css`
-  background-color: pink;
+  /* background-color: pink; */
 `
 
 function Home() {
   return (
     <div css={contanerStyles}>
-      <Text typography="t1" display="block">
-        home page{' '}
-      </Text>
+      <Top title="사용자 추이 그래프.." />
+      <Top title="사용자 list" />
+      <UserList></UserList>
     </div>
   )
 }
