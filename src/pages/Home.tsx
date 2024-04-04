@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import Text from '@/components/shared/Text'
 import Top from '@/components/shared/Top'
 import UserList from '@/components/home/UserList'
 

@@ -1,19 +1,18 @@
-import styled from '@emotion/styled'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
+import styled from '@emotion/styled'
 
 function UserList() {
   return (
     <Container>
-      <Flex direction="column">
-        <Text>userlist</Text>
-        <Text>userlist</Text>
+      <Flex>
+        <Text>hi</Text>
       </Flex>
     </Container>
   )
 }
-export default UserList
 
 const Container = styled.div`
   padding: 24px;
 `
+export default UserList
