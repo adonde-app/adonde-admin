@@ -9,7 +9,7 @@ const contanerStyles = css`
 function Home() {
   return (
     <div css={contanerStyles}>
-      <Top title="사용자 추이 그래프.." />
+      {/* <Top title="사용자 추이 그래프.." /> */}
       <Top title="사용자 list" />
       <UserList></UserList>
     </div>
