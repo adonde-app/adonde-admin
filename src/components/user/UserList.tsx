@@ -2,18 +2,20 @@ import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import { colors } from '@/styles/colorPalette'
+// import { colors } from '@/styles/colorPalette'
 import { useQuery } from '@tanstack/react-query'
 import { fetchUsers } from '@api/getUser'
 import Table from 'react-bootstrap/Table'
 import Spinner from 'react-bootstrap/Spinner'
+import { useNavigate } from 'react-router-dom'
 
 function UserList() {
   const { isLoading, isError, data } = useQuery({
     queryKey: ['users'],
     queryFn: fetchUsers,
   })
-  console.log(data)
+  const navigate = useNavigate()
+  // console.log(data)
   if (isLoading) {
     return (
       <Container>
@@ -45,7 +47,12 @@ function UserList() {
           </thead>
           <tbody>
             {data?.map((user, idx) => (
-              <tr key={idx}>
+              <tr
+                key={idx}
+                onClick={() => {
+                  navigate(`/user/${user.id}`)
+                }}
+              >
                 <td>{user.id}</td>
                 <td>{user.nickname === '' ? '-' : user.nickname}</td>
                 <td>{user.email}</td>
