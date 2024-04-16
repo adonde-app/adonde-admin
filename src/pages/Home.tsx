@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
-import Top from '@/components/shared/Top'
-import UserList from '@/components/home/UserList'
+import Top from '@/shared/Top'
+import UserList from '@/components/user/UserList'
 
 const contanerStyles = css`
   /* background-color: pink; */
