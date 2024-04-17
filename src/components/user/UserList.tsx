@@ -1,13 +1,13 @@
 import Flex from '@shared/Flex'
-import Text from '@shared/Text'
+// import Text from '@shared/Text'
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
+// import { css } from '@emotion/react'
 // import { colors } from '@/styles/colorPalette'
 import { useQuery } from '@tanstack/react-query'
 import { getUsers } from '@api/getUser'
 import Table from 'react-bootstrap/Table'
-import Spinner from 'react-bootstrap/Spinner'
 import { useNavigate } from 'react-router-dom'
+import UserListPlaceholder from './UserListPlaceholder'
 
 function UserList() {
   const { isLoading, isError, data } = useQuery({
@@ -22,14 +22,7 @@ function UserList() {
   if (isLoading) {
     return (
       <Container>
-        <Flex css={loadingContainerStyles}>
-          <span>
-            <Spinner />
-            <Text typography="t2" css={loadingTextStyles}>
-              loading...
-            </Text>
-          </span>
-        </Flex>
+        <UserListPlaceholder />
       </Container>
     )
   }
@@ -73,11 +66,4 @@ const Container = styled.div`
   padding: 24px;
 `
 
-const loadingContainerStyles = css`
-  padding: 16px;
-  border-radius: 4px;
-`
-const loadingTextStyles = css`
-  margin-left: 30px;
-`
 export default UserList
