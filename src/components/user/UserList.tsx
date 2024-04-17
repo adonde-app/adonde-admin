@@ -18,7 +18,6 @@ function UserList() {
     },
   })
   const navigate = useNavigate()
-
   if (isLoading) {
     return (
       <Container>

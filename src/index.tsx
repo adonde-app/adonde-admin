@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Global } from '@emotion/react'
 import globalStyles from './styles/globalStyles'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 const reactQueryOption = {
   queries: {
     // retry: 0, // 실패한 쿼리의 재시도 횟수. 0이면 재시도하지 않음.
@@ -30,6 +30,7 @@ root.render(
     <Global styles={globalStyles} />
     <QueryClientProvider client={queryClient}>
       <App />
+      <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>,
 )
