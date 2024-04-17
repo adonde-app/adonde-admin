@@ -13,6 +13,9 @@ function UserList() {
   const { isLoading, isError, data } = useQuery({
     queryKey: ['users'],
     queryFn: getUsers,
+    select: (data) => {
+      return data.sort((a, b) => a.id - b.id)
+    },
   })
   const navigate = useNavigate()
 
