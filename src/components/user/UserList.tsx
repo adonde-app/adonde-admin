@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 // import { colors } from '@/styles/colorPalette'
 import { useQuery } from '@tanstack/react-query'
-import { fetchUsers } from '@api/getUser'
+import { getUsers } from '@api/getUser'
 import Table from 'react-bootstrap/Table'
 import Spinner from 'react-bootstrap/Spinner'
 import { useNavigate } from 'react-router-dom'
@@ -12,10 +12,10 @@ import { useNavigate } from 'react-router-dom'
 function UserList() {
   const { isLoading, isError, data } = useQuery({
     queryKey: ['users'],
-    queryFn: fetchUsers,
+    queryFn: getUsers,
   })
   const navigate = useNavigate()
-  // console.log(data)
+
   if (isLoading) {
     return (
       <Container>

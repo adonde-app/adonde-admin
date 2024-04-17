@@ -1,4 +1,10 @@
+import UserInfo from '@/components/user/UserInfo'
+
 function User() {
-  return <div>user</div>
+  return (
+    <div>
+      <UserInfo />
+    </div>
+  )
 }
 export default User
