@@ -1,15 +1,13 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { getUserById } from '@api/getUser'
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
 import { colors } from '@/styles/colorPalette'
 import Image from 'react-bootstrap/Image'
-import Top from '@/shared/Top'
-import Text from '@shared/Text'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
+import Top from '@/shared/Top'
+import Text from '@shared/Text'
 
 function UserInfo() {
   const { id } = useParams()
@@ -18,6 +16,11 @@ function UserInfo() {
     queryFn: () => getUserById(Number(id)),
     enabled: id !== '',
   })
+  const navigate = useNavigate()
+
+  const handleBack = () => {
+    navigate(-1) //뒤로가기
+  }
   console.log(data)
   if (isLoading) {
     return <div>loading</div>
@@ -72,6 +75,7 @@ function UserInfo() {
         <FixButton>수정</FixButton>
 
         <RemoveButton>삭제</RemoveButton>
+        <CloseButton onClick={handleBack}>닫기</CloseButton>
       </Container>
     </div>
   )
@@ -96,6 +100,16 @@ const FixButton = styled.button`
 `
 const RemoveButton = styled.button`
   background-color: ${colors.orange};
+  border: none;
+  padding: 15px 32px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+`
+const CloseButton = styled.button`
+  background-color: ${colors.green};
   border: none;
   padding: 15px 32px;
   border-radius: 10px;
