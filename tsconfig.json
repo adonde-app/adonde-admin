@@ -17,7 +17,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["jest", "@testing-library/jest-dom"],
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "typeRoots": ["src/types"]
   },
   "include": ["src", "tsconfig.paths.json"]
 }

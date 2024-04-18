@@ -9,7 +9,8 @@
       "@models/*": ["src/models/*"],
       "@pages/*": ["src/pages/*"],
       "@locales/*": ["src/locales/*"],
-      "@api/*": ["src/api/*"]
+      "@api/*": ["src/api/*"],
+      "@images/*": ["src/images/*"]
     }
   }
 }
