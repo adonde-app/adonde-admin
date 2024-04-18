@@ -6,7 +6,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 import logo from '@/images/logo.png'
 import title from '@/images/adondeTitle2.png'
-import Text from '@shared/Text'
 import styled from '@emotion/styled'
 
 const navBarStyles = css`
@@ -22,8 +21,8 @@ function NavBar() {
     <Navbar css={navBarStyles} expand="lg">
       <Container>
         <Navbar.Brand href="/">
-          <img src={logo} width="40x" />
-          <Titleimg src={title} width="140px" height="30px" />
+          <img alt="logo" src={logo} width="40x" />
+          <Titleimg alt="title" src={title} width="140px" height="30px" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
