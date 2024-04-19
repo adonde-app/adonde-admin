@@ -7,6 +7,7 @@ import Image from 'react-bootstrap/Image'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Text from '@shared/Text'
+import userDefault from '@/images/userDefault.jpeg'
 
 function UserInfo() {
   const { id } = useParams()
@@ -23,6 +24,9 @@ function UserInfo() {
   const dateFormat = (date: Date): string => {
     const format = date.toString().slice(0, -5).split('T')
     return format[0] + ' (' + format[1] + ')'
+  }
+  const addDefaultImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = userDefault
   }
   console.log(data)
   if (isLoading) {
@@ -50,7 +54,12 @@ function UserInfo() {
       <Row>
         <Col xs={12} md={4}>
           <div style={{ padding: '20px' }}>
-            <Image src={profile_image} rounded width="100%" />
+            <Image
+              src={profile_image}
+              onError={addDefaultImg}
+              rounded
+              width="100%"
+            />
           </div>
         </Col>
         <Col>
