@@ -9,3 +9,7 @@ export interface User {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface UserDelete {
+  message: string
+}

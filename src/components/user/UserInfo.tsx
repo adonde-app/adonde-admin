@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getUserById } from '@api/getUser'
 import styled from '@emotion/styled'
 import { colors } from '@/styles/colorPalette'
@@ -9,9 +9,17 @@ import Col from 'react-bootstrap/Col'
 import Text from '@shared/Text'
 import userDefault from '@/images/userDefault.jpeg'
 import Badge from 'react-bootstrap/Badge'
+import { deleteUserById } from '@api/getUser'
+import Modal from 'react-bootstrap/Modal'
+import { useState } from 'react'
+import Button from 'react-bootstrap/Button'
 
 function UserInfo() {
   const { id } = useParams()
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const [show, setShow] = useState(false)
+
   const { isLoading, isError, data } = useQuery({
     queryKey: ['user', id],
     queryFn: () => getUserById(Number(id)),
@@ -19,7 +27,19 @@ function UserInfo() {
   })
   console.log(data)
 
-  const navigate = useNavigate()
+  const removeUserMutation = useMutation({
+    mutationFn: () => deleteUserById(Number(id)),
+    onSuccess: () => {
+      navigate('/')
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    },
+    onError: () => {
+      console.error('에러 발생')
+    },
+  })
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const handleBack = () => {
     navigate(-1) //뒤로가기
@@ -100,8 +120,25 @@ function UserInfo() {
       </Row>
       <div style={{ textAlign: 'right' }}>
         <FixButton>수정</FixButton>
-        <RemoveButton>삭제</RemoveButton>
+        <RemoveButton onClick={handleShow}>삭제</RemoveButton>
         <CloseButton onClick={handleBack}>닫기</CloseButton>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>정말로 해당 유저를 삭제하시겠습니까?</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              닫기
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => removeUserMutation.mutate()}
+            >
+              유저삭제하기
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </Container>
   )
