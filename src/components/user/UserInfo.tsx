@@ -20,6 +20,10 @@ function UserInfo() {
   const handleBack = () => {
     navigate(-1) //뒤로가기
   }
+  const dateFormat = (date: Date): string => {
+    const format = date.toString().slice(0, -5).split('T')
+    return format[0] + ' (' + format[1] + ')'
+  }
   console.log(data)
   if (isLoading) {
     return <div>loading</div>
@@ -64,10 +68,10 @@ function UserInfo() {
               <Text typography="t3">dateofbirth : {dateofbirth}</Text>
             </div>
             <div>
-              <Text typography="t3">createdAt : {createdAt.toString()}</Text>
+              <Text typography="t3">createdAt : {dateFormat(createdAt)}</Text>
             </div>
             <div></div>
-            <Text typography="t3">updatedAt : {updatedAt.toString()}</Text>
+            <Text typography="t3">updatedAt : {dateFormat(updatedAt)}</Text>
           </div>
         </Col>
       </Row>
@@ -81,7 +85,7 @@ function UserInfo() {
 }
 
 const Container = styled.div`
-  margin: 50px;
+  margin: 5% 10%;
   padding: 20px;
   border-radius: 10px;
   background-color: ${colors.grey};
