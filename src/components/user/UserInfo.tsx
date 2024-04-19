@@ -85,7 +85,7 @@ function UserInfo() {
               <Text typography="t3">
                 storedCities :{' '}
                 {storedCities.map((city) => (
-                  <Badge pill bg="secondary">
+                  <Badge pill bg="secondary" key={city}>
                     {city}
                   </Badge>
                 ))}
