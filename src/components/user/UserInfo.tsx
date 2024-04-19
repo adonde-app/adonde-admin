@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Text from '@shared/Text'
 import userDefault from '@/images/userDefault.jpeg'
+import Badge from 'react-bootstrap/Badge'
 
 function UserInfo() {
   const { id } = useParams()
@@ -16,6 +17,8 @@ function UserInfo() {
     queryFn: () => getUserById(Number(id)),
     enabled: id !== '',
   })
+  console.log(data)
+
   const navigate = useNavigate()
 
   const handleBack = () => {
@@ -28,7 +31,7 @@ function UserInfo() {
   const addDefaultImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = userDefault
   }
-  console.log(data)
+
   if (isLoading) {
     return <div>loading</div>
   }
@@ -47,6 +50,7 @@ function UserInfo() {
     createdAt,
     updatedAt,
     profile_image,
+    storedCities,
   } = data
 
   return (
@@ -57,7 +61,7 @@ function UserInfo() {
             <Image
               src={profile_image}
               onError={addDefaultImg}
-              rounded
+              alt="prfofile_img"
               width="100%"
             />
           </div>
@@ -70,6 +74,7 @@ function UserInfo() {
             <div>
               <Text typography="t3">id: {userId}</Text>
             </div>
+
             <div>
               <Text typography="t3">email : {email}</Text>
             </div>
@@ -77,9 +82,18 @@ function UserInfo() {
               <Text typography="t3">dateofbirth : {dateofbirth}</Text>
             </div>
             <div>
+              <Text typography="t3">
+                storedCities :{' '}
+                {storedCities.map((city) => (
+                  <Badge pill bg="secondary">
+                    {city}
+                  </Badge>
+                ))}
+              </Text>
+            </div>
+            <div>
               <Text typography="t3">createdAt : {dateFormat(createdAt)}</Text>
             </div>
-            <div></div>
             <Text typography="t3">updatedAt : {dateFormat(updatedAt)}</Text>
           </div>
         </Col>
