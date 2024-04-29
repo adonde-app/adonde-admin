@@ -62,6 +62,7 @@ const RAW_RUNTIME_STATE =
           ["react-scripts", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.0.1"],\
           ["react-select", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.8.0"],\
           ["recharts", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:2.12.3"],\
+          ["recoil", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:0.7.7"],\
           ["typescript", "patch:typescript@npm%3A4.9.3#optional!builtin<compat/typescript>::version=4.9.3&hash=a66ed4"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
@@ -7904,6 +7905,7 @@ const RAW_RUNTIME_STATE =
           ["react-scripts", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.0.1"],\
           ["react-select", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.8.0"],\
           ["recharts", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:2.12.3"],\
+          ["recoil", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:0.7.7"],\
           ["typescript", "patch:typescript@npm%3A4.9.3#optional!builtin<compat/typescript>::version=4.9.3&hash=a66ed4"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
@@ -12560,6 +12562,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["gzip-size", "npm:6.0.0"],\
           ["duplexer", "npm:0.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["hamt_plus", [\
+      ["npm:1.0.2", {\
+        "packageLocation": "../../.yarn/berry/cache/hamt_plus-npm-1.0.2-67a52ee1df-10c0.zip/node_modules/hamt_plus/",\
+        "packageDependencies": [\
+          ["hamt_plus", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -18577,6 +18588,37 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["recharts-scale", "npm:0.4.5"],\
           ["decimal.js-light", "npm:2.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["recoil", [\
+      ["npm:0.7.7", {\
+        "packageLocation": "../../.yarn/berry/cache/recoil-npm-0.7.7-4452f58b67-10c0.zip/node_modules/recoil/",\
+        "packageDependencies": [\
+          ["recoil", "npm:0.7.7"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:0.7.7", {\
+        "packageLocation": "./.yarn/__virtual__/recoil-virtual-263456491e/3/.yarn/berry/cache/recoil-npm-0.7.7-4452f58b67-10c0.zip/node_modules/recoil/",\
+        "packageDependencies": [\
+          ["recoil", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:0.7.7"],\
+          ["@types/react", "npm:18.2.73"],\
+          ["@types/react-dom", "npm:18.2.23"],\
+          ["@types/react-native", null],\
+          ["hamt_plus", "npm:1.0.2"],\
+          ["react", "npm:18.2.0"],\
+          ["react-dom", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:18.2.0"],\
+          ["react-native", null]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react-native",\
+          "@types/react",\
+          "react-dom",\
+          "react-native",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
