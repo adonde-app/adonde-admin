@@ -19,7 +19,6 @@ function UserInfo() {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [show, setShow] = useState(false)
-
   const { isLoading, isError, data } = useQuery({
     queryKey: ['user', id],
     queryFn: () => getUserById(Number(id)),
