@@ -1,5 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query'
 import { getUserById } from '@api/getUser'
 import styled from '@emotion/styled'
 import { colors } from '@/styles/colorPalette'
@@ -19,10 +23,9 @@ function UserInfo() {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [show, setShow] = useState(false)
-  const { isLoading, isError, data } = useQuery({
+  const { isLoading, isError, data } = useSuspenseQuery({
     queryKey: ['user', id],
     queryFn: () => getUserById(Number(id)),
-    enabled: id !== '',
   })
   console.log(data)
 

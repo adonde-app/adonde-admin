@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
@@ -9,6 +9,7 @@ import { Global } from '@emotion/react'
 import globalStyles from './styles/globalStyles'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import Loading from './shared/Loading'
 const reactQueryOption = {
   queries: {
     // retry: 0, // 실패한 쿼리의 재시도 횟수. 0이면 재시도하지 않음.
@@ -29,7 +30,9 @@ root.render(
   <React.StrictMode>
     <Global styles={globalStyles} />
     <QueryClientProvider client={queryClient}>
-      <App />
+      <Suspense fallback={<Loading />}>
+        <App />
+      </Suspense>
       <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>,
