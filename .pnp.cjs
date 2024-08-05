@@ -58,6 +58,7 @@ const RAW_RUNTIME_STATE =
           ["react", "npm:18.2.0"],\
           ["react-bootstrap", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:2.10.2"],\
           ["react-dom", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:18.2.0"],\
+          ["react-error-boundary", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:4.0.13"],\
           ["react-router-dom", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:6.22.3"],\
           ["react-scripts", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.0.1"],\
           ["react-select", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.8.0"],\
@@ -7901,6 +7902,7 @@ const RAW_RUNTIME_STATE =
           ["react", "npm:18.2.0"],\
           ["react-bootstrap", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:2.10.2"],\
           ["react-dom", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:18.2.0"],\
+          ["react-error-boundary", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:4.0.13"],\
           ["react-router-dom", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:6.22.3"],\
           ["react-scripts", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.0.1"],\
           ["react-select", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:5.8.0"],\
@@ -18222,6 +18224,29 @@ const RAW_RUNTIME_STATE =
           ["loose-envify", "npm:1.4.0"],\
           ["react", "npm:18.2.0"],\
           ["scheduler", "npm:0.23.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-error-boundary", [\
+      ["npm:4.0.13", {\
+        "packageLocation": "../../.yarn/berry/cache/react-error-boundary-npm-4.0.13-22e72c3a85-10c0.zip/node_modules/react-error-boundary/",\
+        "packageDependencies": [\
+          ["react-error-boundary", "npm:4.0.13"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:4.0.13", {\
+        "packageLocation": "./.yarn/__virtual__/react-error-boundary-virtual-62f226fbf3/3/.yarn/berry/cache/react-error-boundary-npm-4.0.13-22e72c3a85-10c0.zip/node_modules/react-error-boundary/",\
+        "packageDependencies": [\
+          ["react-error-boundary", "virtual:94e3cb4d52e25cc7ae1c4b8076f41dc8ae9fd41920a970171fde6d843c858efb4e9ed6c184eb0569aea42ece6c704b30afff2f9a639aa67d69070ab2d0a7d2a9#npm:4.0.13"],\
+          ["@babel/runtime", "npm:7.24.1"],\
+          ["@types/react", "npm:18.2.73"],\
+          ["react", "npm:18.2.0"]\
         ],\
         "packagePeers": [\
           "@types/react",\
