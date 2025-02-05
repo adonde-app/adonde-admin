@@ -7,9 +7,15 @@ import reportWebVitals from './reportWebVitals'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Global } from '@emotion/react'
 import globalStyles from './styles/globalStyles'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryErrorResetBoundary,
+} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Loading from './shared/Loading'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorFallback from './shared/Error'
 const reactQueryOption = {
   queries: {
     // retry: 0, // 실패한 쿼리의 재시도 횟수. 0이면 재시도하지 않음.
@@ -19,10 +25,23 @@ const reactQueryOption = {
     // refetchOnMount: false, // 컴포넌트가 마운트될 때마다 쿼리를 리페치할지 여부를 나타내는 플래그.
     // refetchOnWindowFocus: false, // 윈도우가 포커스를 받을 때마다 쿼리를 리페치할지 여부를 나타내는 플래그.
     // refetchInterval: 60 * 1000, // 주기적으로 쿼리를 리페치하는 간격(밀리초).
+    // throwOnError: true,
   },
+  // mutations: {
+  //   throwOnError: false,
+  // },
 }
 
 const queryClient = new QueryClient({
+  // defaultOptions: {
+  //   queries: {
+  //     staleTime: 60 * 1000,
+  //     throwOnError: true,
+  //   },
+  //   mutations: {
+  //     throwOnError: false,
+  //   },
+  // },
   defaultOptions: reactQueryOption,
 })
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
@@ -30,9 +49,20 @@ root.render(
   <React.StrictMode>
     <Global styles={globalStyles} />
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<Loading />}>
-        <App />
-      </Suspense>
+      <QueryErrorResetBoundary>
+        {({ reset }) => (
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={({ resetErrorBoundary }) => (
+              <ErrorFallback resetErrorBoundary={resetErrorBoundary} />
+            )}
+          >
+            <Suspense fallback={<Loading />}>
+              <App />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+      </QueryErrorResetBoundary>
       <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>,

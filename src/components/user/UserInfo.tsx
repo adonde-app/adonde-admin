@@ -23,11 +23,10 @@ function UserInfo() {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [show, setShow] = useState(false)
-  const { isLoading, isError, data } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['user', id],
     queryFn: () => getUserById(Number(id)),
   })
-  console.log(data)
 
   const removeUserMutation = useMutation({
     mutationFn: () => deleteUserById(Number(id)),
@@ -52,16 +51,6 @@ function UserInfo() {
   }
   const addDefaultImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = userDefault
-  }
-
-  if (isLoading) {
-    return <div>loading</div>
-  }
-  if (isError) {
-    return <div>error</div>
-  }
-  if (data == null) {
-    return <div>다시 시도해</div>
   }
 
   const {
